@@ -1,0 +1,29 @@
+version: "3.7"
+services:
+    backend:
+        restart: always
+        build:
+            context: ./backend
+            dockerfile: ./Dockerfile
+        expose:
+            - 5004
+        volumes:
+            - "./backend:/usr/src/app/backend"
+    frontend:
+        build:
+            context: ./frontend
+            dockerfile: Dockerfile
+        expose:
+            - 80
+        volumes:
+            - "./client:/usr/src/app"
+            - "/usr/src/app/node_modules"
+    nginx:
+        build:
+            context: ./nginx
+            dockerfile: Dockerfile
+        restart: always
+        ports:
+            - 80:80
+        depends_on:
+            - frontend
