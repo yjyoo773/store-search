@@ -14,6 +14,8 @@ const useForm = (action) => {
   const handleChange = (e) => {
     e.persist();
     setValues((values) => ({ ...values, [e.target.name]: e.target.value }));
+    handleSubmit();
+    
   };
 
 
