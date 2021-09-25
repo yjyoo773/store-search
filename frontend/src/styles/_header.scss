@@ -1,0 +1,13 @@
+body{
+    font-family: $font-primary;
+    color: $primary-color;
+    background-color: #fdfdfd;
+    margin-left: $gutter-md;
+    h1{
+        font-size: $gutter-lg;
+        font-weight: 700;
+    }
+    .header{
+        margin: $gutter-md 0;
+    }
+}
