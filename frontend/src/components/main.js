@@ -4,7 +4,7 @@ import AutoComplete from "./autoComplete.js";
 function Main() {
   const [list, setList] = useState([]);
 
-//   let api = "http://localhost/backend/stores";
+  //   let api = process.env.REACT_APP_URL || "http://localhost:5004/backend/stores";
   let api = "http://localhost:5004/backend/stores";
   const handleGet = async (action) => {
     try {
