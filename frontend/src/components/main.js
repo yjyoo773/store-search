@@ -8,7 +8,7 @@ function Main() {
   let api = "http://localhost:5004/backend/stores";
   const handleGet = async (action) => {
     try {
-      let getList = await axios.get(api);
+      let getList = await axios.post(api);
       let data = getList.data;
       action(data);
     } catch (e) {
