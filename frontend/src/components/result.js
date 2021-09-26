@@ -1,19 +1,27 @@
-import React from "react";
-// import Card from "react-bootstrap/Card";
+import React, { useContext } from "react";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material/styles";
 import Chip from "@mui/material/Chip";
 import { CardContent } from "@mui/material";
 
+import { SettingContext } from "../context/state.js";
+
 function Result(props) {
-  const ListItem = styled("li")(({ theme }) => ({
-    margin: theme.spacing(0.5),
-  }));
+  const context = useContext(SettingContext);
+
+  let getRelated = (e) => {
+    let tag = e.currentTarget.innerText;
+    let related = props.store.filter((x) => x.tags.includes(tag));
+    context.changeRelated(related);
+    context.changeTag(tag);
+  };
+
   return (
     <Card className="resultCard">
       <CardContent>
-        <Typography gutterBottom variant="h5">{props.result.name}</Typography>
+        <Typography gutterBottom variant="h5">
+          {props.result.name}
+        </Typography>
         {props.result.tags.split(",").map((tag, idx) => (
           <Chip
             key={idx}
@@ -21,7 +29,7 @@ function Result(props) {
             className="resultBadge"
             variant="outlined"
             color="info"
-            clickable
+            onClick={(e) => getRelated(e)}
           />
         ))}
       </CardContent>

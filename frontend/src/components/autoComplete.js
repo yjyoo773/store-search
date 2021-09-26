@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Result from "./result.js";
+import { SettingContext } from "../context/state.js";
 
 function AutoComplete(props) {
   const [active, setActive] = useState(0);
   const [filtered, setFiltered] = useState([]);
   const [isShow, setIsShow] = useState(false);
-  const [input, setInput] = useState("");
   const [submitVal, setSubmitVal] = useState({});
+
+  const context = useContext(SettingContext);
 
   let suggestions;
   if (props.suggest) {
@@ -21,26 +23,29 @@ function AutoComplete(props) {
     setActive(0);
     setFiltered(newSuggest);
     setIsShow(true);
-    setInput(e.currentTarget.value);
+    context.changeInput(e.currentTarget.value);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (input) setSubmitVal(props.suggest.find((x) => x.name === input) || {});
+    if (context.input)
+      setSubmitVal(props.suggest.find((x) => x.name === context.input) || {});
   };
 
   const onClick = (e) => {
     setActive(0);
     setFiltered([]);
     setIsShow(false);
-    setInput(e.currentTarget.innerText);
+    context.changeInput(e.currentTarget.innerText);
+
   };
 
   const onKeyDown = (e) => {
     if (e.keyCode === 13) {
       setActive(0);
       setIsShow(false);
-      setInput(filtered[active]);
+    context.changeInput(filtered[active]);
+
     } else if (e.keyCode === 38) {
       return active === 0 ? null : setActive(active - 1);
     } else if (e.keyCode === 40) {
@@ -49,7 +54,7 @@ function AutoComplete(props) {
   };
 
   const renderAutocomplete = () => {
-    if (isShow && input) {
+    if (isShow && context.input) {
       if (filtered.length) {
         return (
           <ul className="autocomplete">
@@ -84,13 +89,17 @@ function AutoComplete(props) {
           type="text"
           onChange={onChange}
           onKeyDown={onKeyDown}
-          value={input}
+          value={context.input}
           placeholder="Store Name"
         />
         <button>Submit</button>
       </form>
       {renderAutocomplete()}
-      {Object.keys(submitVal).length !== 0 ? <Result result={submitVal} /> : ""}
+      {Object.keys(submitVal).length > 0 ? (
+        <Result result={submitVal} store={props.suggest} />
+      ) : (
+        ""
+      )}
     </>
   );
 }
