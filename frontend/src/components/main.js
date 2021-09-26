@@ -8,7 +8,6 @@ import Related from "./related.js";
 function Main() {
   const [list, setList] = useState([]);
   const context = useContext(SettingContext);
-  console.log(context.getTag);
   //   let api = process.env.REACT_APP_URL || "http://localhost:5004/backend/stores";
   let api = "http://localhost:5004/backend/stores";
   const handleGet = async (action) => {
