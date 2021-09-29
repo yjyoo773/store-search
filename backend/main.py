@@ -1,5 +1,6 @@
 from sanic import Sanic, response
 from sanic_cors import CORS
+import re
 import json
 
 
@@ -40,7 +41,7 @@ def create_app():
             {"id": 19, "name": "Scottsdale 320", "tags": "gen3, southwest"},
             {"id": 20, "name": "Scottsdale 142", "tags": "gen4, southwest, kitchen"}
         ]
-        
+
         return response.json({'stores': stores})
 
     return app
@@ -49,3 +50,4 @@ def create_app():
 if __name__ == "__main__":
     app = create_app()
     app.run(host="0.0.0.0", port=5004)
+
