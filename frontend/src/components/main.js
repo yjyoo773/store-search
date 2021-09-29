@@ -8,8 +8,9 @@ import Related from "./related.js";
 function Main() {
   const [list, setList] = useState([]);
   const context = useContext(SettingContext);
-  //   let api = process.env.REACT_APP_URL || "http://localhost:5004/backend/stores";
-  let api = "http://localhost:5004/backend/stores";
+    let api = process.env.REACT_APP_URL || "http://localhost/backend/stores";
+  // let api = "http://localhost:5004/backend/stores";
+  
   const handleGet = async (action) => {
     try {
       let getList = await axios.post(api);
@@ -27,7 +28,7 @@ function Main() {
   return (
     <>
       <AutoComplete suggest={list.stores} />
-      {context.related.length > 0 ? <Related /> : ""}
+      {context.related.length > 0 ? <Related stores = {list.stores}/> : ""}
     </>
   );
 }

@@ -1,20 +1,21 @@
 input {
     border: 1px solid $black;
-    padding: 0.5vw 1vw;
+    padding: 1vw;
     width: 40%;
     border-radius: 5px;
     transition: $transition-sp;
     margin: $gutter-sm 5px $gutter-sm 0;
+    font-size: 1.25rem;
     &:focus{
         background: $black;
         color: $white;
     }
   }
   button{
-    padding: 0.5vw 0.6vw;
+    padding: 1vw;
     outline: none;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 1.25rem;
     letter-spacing: .5px;
     transition: all .3s;
     border-radius: 10px;
@@ -63,11 +64,12 @@ input {
     .resultBadge{
         padding: 6px;
         margin-right: 1.25vw;
+        margin-bottom: 1.25vw;
     }
 }
 
 .relateCard{
-    width: 50%;
+    width: 40%;
     .relateBadge{
         padding: 6px;
         margin-right: 1.25vw;

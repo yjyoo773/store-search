@@ -15,14 +15,13 @@ function Result(props) {
     context.changeRelated(related);
     context.changeTag(tag);
   };
-
   return (
     <Card className="resultCard">
       <CardContent>
         <Typography gutterBottom variant="h5">
-          {props.result.name}
+          {context.submitVal.name}
         </Typography>
-        {props.result.tags.split(",").map((tag, idx) => (
+        {context.submitVal.tags.split(",").map((tag, idx) => (
           <Chip
             key={idx}
             label={tag}

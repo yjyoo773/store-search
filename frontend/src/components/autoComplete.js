@@ -6,7 +6,6 @@ function AutoComplete(props) {
   const [active, setActive] = useState(0);
   const [filtered, setFiltered] = useState([]);
   const [isShow, setIsShow] = useState(false);
-  const [submitVal, setSubmitVal] = useState({});
 
   const context = useContext(SettingContext);
 
@@ -29,7 +28,8 @@ function AutoComplete(props) {
   const onSubmit = (e) => {
     e.preventDefault();
     if (context.input)
-      setSubmitVal(props.suggest.find((x) => x.name === context.input) || {});
+    context.changeSubmit(props.suggest.find((x) => x.name === context.input) || {});
+
   };
 
   const onClick = (e) => {
@@ -95,8 +95,8 @@ function AutoComplete(props) {
         <button>Submit</button>
       </form>
       {renderAutocomplete()}
-      {Object.keys(submitVal).length > 0 ? (
-        <Result result={submitVal} store={props.suggest} />
+      {Object.keys(context.submitVal).length > 0 ? (
+        <Result result={context.submitVal} store={props.suggest} />
       ) : (
         ""
       )}

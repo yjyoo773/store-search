@@ -5,14 +5,17 @@ function SettingsProvider(props) {
   const [getTag, setGetTag] = useState("");
   const [related, setRelated] = useState([]);
   const [input, setInput] = useState("");
+  const [submitVal, setSubmitVal] = useState({});
 
   const state = {
     getTag,
     related,
     input,
+    submitVal,
     changeTag: setGetTag,
     changeRelated: setRelated,
-    changeInput: setInput
+    changeInput: setInput,
+    changeSubmit: setSubmitVal,
   };
 
   return (
