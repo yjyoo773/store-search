@@ -21,6 +21,3 @@ The API backend is written in python and will need to be customized to take the 
 ### Additional Resources / Information
 - You may use any existing resources that is available even an existing React component
 - You can run on any major OS (MacOS, Windows, Linux) but you will need `Docker` and `docker-compose` working
-
-### Demo
-[!](./DEMO.mov)
