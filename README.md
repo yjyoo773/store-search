@@ -23,4 +23,4 @@ The API backend is written in python and will need to be customized to take the 
 - You can run on any major OS (MacOS, Windows, Linux) but you will need `Docker` and `docker-compose` working
 
 ### Demo
-[!](./DEMO/mov)
+[!](./DEMO.mov)
